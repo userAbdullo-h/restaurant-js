@@ -12,6 +12,7 @@ window.addEventListener('DOMContentLoaded',() => {
 			tabs.forEach(tab => {
 				tab.classList.remove('tabheader__item_active')
 			})
+			
 		}
 
 		function showTabContent(index = 0) {
@@ -107,4 +108,46 @@ window.addEventListener('DOMContentLoaded',() => {
 		}
 
 	setClock('.timer', deadLine)
+
+	//Modal
+
+	const modalOpenBtns = document.querySelectorAll("[data-modal]"),
+		modal = document.querySelector(".modal"),
+		modalCloseBtn = document.querySelector('[data-modal-close]'),
+		modalContent = document.querySelector('.modal__content')
+	
+		function openModal() {
+			modalContent.classList.add("modal_fade")
+			modal.classList.add("show")
+			modal.classList.remove("hide")
+			document.body.style.overflow = 'hidden'
+			clearInterval(modalTimeId)
+		}
+
+		function closeModal() {
+			modal.classList.add("hide")
+			modal.classList.remove("show")
+			document.body.style.overflow = ''
+
+		}
+
+	modalOpenBtns.forEach(btn => {
+		btn.addEventListener("click", openModal)
+	})
+
+	modalCloseBtn.addEventListener('click', closeModal)
+
+	modal.addEventListener('click', (event) => {
+		if (event.target === modal) {
+			closeModal()
+		}
+	})
+
+	document.addEventListener('keydown', (event) => {
+		if (event.code === 'Escape' && modal.classList.contains('show')) {
+			closeModal()
+		}
+	})
+
+	const modalTimeId = setTimeout(openModal, 5000)
 })
