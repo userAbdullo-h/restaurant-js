@@ -149,5 +149,150 @@ window.addEventListener('DOMContentLoaded',() => {
 		}
 	})
 
-	const modalTimeId = setTimeout(openModal, 5000)
+	const modalTimeId = setTimeout(openModal, 50000)
+
+	//Class 1-part
+	class OfferMenu {
+		constructor(src, alt, title, descr, discount, sell, parentSelector){
+			this.src = src
+			this.alt = alt
+			this.title = title
+			this.descr = descr
+			this.discount = discount
+			this.sell = sell
+			this.parent = document.querySelector(parentSelector)
+			this.formatToUSD()
+		}
+
+		formatToUSD() {
+			this.discount = this.discount.toLocaleString("en-US", {style:"currency", currency:"USD"})
+			this.sell = this.sell.toLocaleString("en-US", {style:"currency", currency:"USD"})
+		}
+		render () {
+			const element = document.createElement("div")
+			element.innerHTML = `
+          <img src="${this.src}" alt="${this.alt}">
+          <div>
+            <h3>${this.title}</h3>
+            <p>${this.descr}<p>
+            <p><del>${this.discount}</del> <span class="primary-text">${this.sell}</span></p>
+          </div>
+        `
+			
+				this.parent.append(element)
+		}
+	}
+
+const offers = [
+	{
+		src: "./img/offer1.png",
+		alt: 'Quattro Pasta',
+		title: 'Quattro Pasta',
+		descr: 'Quattro Pasta is a delicious and easy-to-make pasta dish that is perfect',
+		discount: 20,
+		sell: 5,
+	},
+	{
+		src: "./img/offer2.png",
+		alt: 'Vegertarian Pasta',
+		title: 'Vegertarian Pasta',
+		descr: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.',
+		discount: 30,
+		sell: 15,
+	},
+	{
+		src: "./img/offer3.png",
+		alt: 'Gluten-Free Pasta',
+		title: 'Gluten-Free Pasta',
+		descr: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.',
+		discount: 100,
+		sell: 50,
+	}
+]
+
+offers.forEach(offer => {
+	const {src, alt, descr, discount, sell, title} = offer
+	new OfferMenu(src,alt,title,descr,discount,sell,'.offers-items').render()
+})
+
+// new OfferMenu(
+// 		"./img/offer1.png",
+// 		'Quattro Pasta',
+// 		'Quattro Pasta',
+// 		'Quattro Pasta is a classic Italian dish made with four types of pasta, including spaghetti',
+// 		20,  10,
+// 		".offers-items"
+// 	).render()
+
+// new OfferMenu(
+// 		"./img/offer2.png",
+// 		'Vegertarian Pasta',
+// 		'Vegertarian Pasta',
+// 		'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.',
+// 		60, 25,
+// 		".offers-items"
+// 	).render()
+// new OfferMenu(
+// 		"./img/offer3.png",
+// 		'Gluten-Free Pasta',
+// 		'Gluten-Free Pasta',
+// 		'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.',
+// 		100, 50,
+// 		".offers-items"
+// 	).render()
+
+
+	//Class 2-part
+	class DayTime {
+		constructor(src, alt, title, descr, parentSelector) {
+			this.src = src
+			this.alt = alt
+			this.title = title
+			this.descr = descr
+			this.parent = document.querySelector(parentSelector)
+		}
+
+		renderPhoto(){
+			const element = document.createElement("div")
+			element.innerHTML= `
+				<img src="${this.src}" alt="${this.alt}">
+        <h3>${this.title}</h3>
+        <p>${this.descr}</p>
+			`
+
+			this.parent.append(element)
+		}
+	}
+
+	const dayTimes = [
+		{
+			src: './img/breckfastIcon.png',
+			alt: 'Breakfast',
+			title: 'Breakfast',
+			descr: '8:00 am to 10:00 am',
+		},
+		{
+			src: './img/lunchIcon.png',
+			alt: 'Lunch',
+			title: 'Lunch',
+			descr: '4:00 pm to 7:00 pm',
+		},
+		{
+			src: './img/dinnerIcon.png',
+			alt: 'Dinner',
+			title: 'Dinner',
+			descr: '9:00 pm to 1:00 Am',
+		},
+		{
+			src: './img/dessertIcon.png',
+			alt: 'Dessert',
+			title: 'Dessert',
+			descr: 'All day',
+		},
+	]
+
+	dayTimes.forEach(dayTime =>{
+		const {src, alt,title, descr} = dayTime
+		new DayTime(src,alt,title,descr,'.daytime-items').renderPhoto()
+	})
 })
