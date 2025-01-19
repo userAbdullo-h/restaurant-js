@@ -1,0 +1,145 @@
+ {
+	"offers" :[
+		{
+			"src": "./img/offer1.png",
+			"alt": "Quattro Pasta",
+			"title": "Quattro Pasta",
+			"descr": "Quattro Pasta is a delicious and easy-to-make pasta dish that is perfect",
+			"discount": 20,
+			"sell": 5
+		},
+		{
+			"src": "./img/offer2.png",
+			"alt": "Vegertarian Pasta",
+			"title": "Vegertarian Pasta",
+			"descr": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.",
+			"discount": 30,
+			"sell": 15
+		},
+		{
+			"src": "./img/offer3.png",
+			"alt": "Gluten-Free Pasta",
+			"title": "Gluten-Free Pasta",
+			"descr": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.",
+			"discount": 100,
+			"sell": 50
+		}
+	],
+
+	"dayTimes" :[
+		{
+			"src": "./img/breckfastIcon.png",
+			"alt": "Breakfast",
+			"title": "Breakfast",
+			"descr": "8:00 am to 10:00 am"
+	},
+	{
+			"src": "./img/lunchIcon.png",
+			"alt": "Lunch",
+			"title": "Lunch",
+			"descr": "4:00 pm to 7:00 pm"
+	},
+	{
+			"src": "./img/dinnerIcon.png",
+			"alt": "Dinner",
+			"title": "Dinner",
+			"descr": "9:00 pm to 1:00 Am"
+	},
+	{
+			"src": "./img/dessertIcon.png",
+			"alt": "Dessert",
+			"title": "Dessert",
+			"descr": "All day"
+	}
+	],
+
+	"menuItemLeft": [
+		{
+			"src": "./img/food1.png",
+			"alt": "LASAL Cheese",
+			"title": "LASAL Cheese",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 18
+	},
+	{
+			"src": "./img/food2.png",
+			"alt": "JUMBO CRAB SHRIMP",
+			"title": "JUMBO CRAB SHRIMP",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 24
+	},
+	{
+			"src": "./img/food3.png",
+			"alt": "KOKTAIL JUCIE",
+			"title": "KOKTAIL JUCIE",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 12
+	},
+	{
+			"src": "./img/food4.png",
+			"alt": "CAPO STEAK",
+			"title": "CAPO STEAK",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 60
+	},
+	{
+			"src": "./img/food5.png",
+			"alt": "ORGANIC FRUIT SALAD",
+			"title": "ORGANIC FRUIT SALAD",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 8
+	},
+	{
+			"src": "./img/food6.png",
+			"alt": "CHEESE PIZZA",
+			"title": "CHEESE PIZZA",
+			"descr":"Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale" : 18
+ }
+	],
+
+	"menuItemRight": [
+		{
+			"src": "./img/food1.png",
+			"alt": "LASAL Cheese",
+			"title": "LASAL Cheese",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 18
+	},
+	{
+			"src": "./img/food2.png",
+			"alt": "JUMBO CRAB SHRIMP",
+			"title": "JUMBO CRAB SHRIMP",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 24
+	},
+	{
+			"src": "./img/food3.png",
+			"alt": "KOKTAIL JUCIE",
+			"title": "KOKTAIL JUCIE",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 12
+	},
+	{
+			"src": "./img/food4.png",
+			"alt": "CAPO STEAK",
+			"title": "CAPO STEAK",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 60
+	},
+	{
+			"src": "./img/food5.png",
+			"alt": "ORGANIC FRUIT SALAD",
+			"title": "ORGANIC FRUIT SALAD",
+			"descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale": 8
+	},
+	{
+			"src": "./img/food6.png",
+			"alt": "CHEESE PIZZA",
+			"title": "CHEESE PIZZA",
+			"descr":"Lorem ipsum dolor sit amet consectetur adipisicing elit. At, explicabo.",
+			"sale" : 18
+ }
+	]
+ }

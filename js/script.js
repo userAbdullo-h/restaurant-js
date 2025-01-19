@@ -1,3 +1,7 @@
+// "use strict"
+
+// const { response } = require('express')
+
 window.addEventListener('DOMContentLoaded',() => {
 	//Tabs
 	const tabs = document.querySelectorAll('.tabheader__item'),
@@ -113,7 +117,6 @@ window.addEventListener('DOMContentLoaded',() => {
 
 	const modalOpenBtns = document.querySelectorAll("[data-modal]"),
 		modal = document.querySelector(".modal"),
-		// modalCloseBtn = document.querySelector('[data-modal-close]'),
 		modalContent = document.querySelector('.modal__content')
 	
 		function openModal() {
@@ -135,7 +138,6 @@ window.addEventListener('DOMContentLoaded',() => {
 		btn.addEventListener("click", openModal)
 	})
 
-	// modalCloseBtn.addEventListener('click', closeModal)
 
 	modal.addEventListener('click', (event) => {
 		if (event.target === modal || event.target.getAttribute('data-modal-close') === '' ){
@@ -166,7 +168,6 @@ window.addEventListener('DOMContentLoaded',() => {
 
 		formatToUSD() {
 			this.discount = this.discount.toLocaleString("en-US", {style:"currency", currency:"USD"})
-			this.sell = this.sell.toLocaleString("en-US", {style:"currency", currency:"USD"})
 		}
 		render () {
 			const element = document.createElement("div")
@@ -183,66 +184,69 @@ window.addEventListener('DOMContentLoaded',() => {
 		}
 	}
 
-const offers = [
-	{
-		src: "./img/offer1.png",
-		alt: 'Quattro Pasta',
-		title: 'Quattro Pasta',
-		descr: 'Quattro Pasta is a delicious and easy-to-make pasta dish that is perfect',
-		discount: 20,
-		sell: 5,
-	},
-	{
-		src: "./img/offer2.png",
-		alt: 'Vegertarian Pasta',
-		title: 'Vegertarian Pasta',
-		descr: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.',
-		discount: 30,
-		sell: 15,
-	},
-	{
-		src: "./img/offer3.png",
-		alt: 'Gluten-Free Pasta',
-		title: 'Gluten-Free Pasta',
-		descr: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.',
-		discount: 100,
-		sell: 50,
-	}
-]
-
-offers.forEach(offer => {
-	const {src, alt, descr, discount, sell, title} = offer
-	new OfferMenu(src,alt,title,descr,discount,sell,'.offers-items').render()
-})
-
-// new OfferMenu(
-// 		"./img/offer1.png",
-// 		'Quattro Pasta',
-// 		'Quattro Pasta',
-// 		'Quattro Pasta is a classic Italian dish made with four types of pasta, including spaghetti',
-// 		20,  10,
-// 		".offers-items"
-// 	).render()
-
-// new OfferMenu(
-// 		"./img/offer2.png",
-// 		'Vegertarian Pasta',
-// 		'Vegertarian Pasta',
-// 		'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.',
-// 		60, 25,
-// 		".offers-items"
-// 	).render()
-// new OfferMenu(
-// 		"./img/offer3.png",
-// 		'Gluten-Free Pasta',
-// 		'Gluten-Free Pasta',
-// 		'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.',
-// 		100, 50,
-// 		".offers-items"
-// 	).render()
-
+	fetch("http://localhost:3000/offers", {
+		method: 'GET',
+		headers: {"Content-Type" : "application/json"}
+	}).then(response => response.json())
+		.then(data => {
+			data.forEach(offer => {
+				const {src, alt, descr, discount, sell, title} = offer
+				new OfferMenu(src,alt,title,descr,discount,sell,'.offers-items').render()
+			})
+		})
 
 	//Class 2-part
+	class MenuItem {
+		constructor(src, alt, title, sale, descr, parentSelector){
+			this.src = src
+			this.alt = alt
+			this.title = title
+			this.sale = sale
+			this.descr = descr
+			this.parent = document.querySelector(parentSelector)
+		}
+
+		formatToUSD() {
+			this.sale = this.sale.toLocaleString("en-US", {style:"currency", currency:"USD"})
+		}
+
+		renderText(){
+			const element = document.createElement('div')
+			element.classList.add('menu-item')
+			element.innerHTML = `
+              <img src="${this.src}" alt="${this.alt}">
+              <div>
+                <h3>${this.title} <span class="primary-text">$${this.sale}</span></h3>
+                <p>${this.descr}</p>
+							</div>
+			`
+
+			this.parent.append(element)
+		}
+	}
+
+	fetch('http://localhost:3000/menuItemLeft', {
+		method: "GET",
+		headers: {"Content-Type" : "application/json"}
+	}).then(response => response.json()).then(data => {
+		data.forEach(menuItem =>{
+			const {src, alt,title, descr, sale} = menuItem
+			new MenuItem(src,alt,title,sale, descr,'.menu-items-left').renderText()
+		})
+	})   // Menu-Items-Left
+
+	fetch('http://localhost:3000/menuItemRight', {
+		method: "GET",
+		headers: {"Content-Type" : "application/json"}
+	}).then(response => response.json()).then(data => {
+		data.forEach(menuItem =>{
+			const {src, alt,title, descr, sale} = menuItem
+			new MenuItem(src,alt,title,sale, descr,'.menu-items-right').renderText()
+		})  //Menu-Items-Right
+	})
+
+	
+	//Class 3-part
 	class DayTime {
 		constructor(src, alt, title, descr, parentSelector) {
 			this.src = src
@@ -264,36 +268,14 @@ offers.forEach(offer => {
 		}
 	}
 
-	const dayTimes = [
-		{
-			src: './img/breckfastIcon.png',
-			alt: 'Breakfast',
-			title: 'Breakfast',
-			descr: '8:00 am to 10:00 am',
-		},
-		{
-			src: './img/lunchIcon.png',
-			alt: 'Lunch',
-			title: 'Lunch',
-			descr: '4:00 pm to 7:00 pm',
-		},
-		{
-			src: './img/dinnerIcon.png',
-			alt: 'Dinner',
-			title: 'Dinner',
-			descr: '9:00 pm to 1:00 Am',
-		},
-		{
-			src: './img/dessertIcon.png',
-			alt: 'Dessert',
-			title: 'Dessert',
-			descr: 'All day',
-		},
-	]
-
-	dayTimes.forEach(dayTime =>{
-		const {src, alt,title, descr} = dayTime
-		new DayTime(src,alt,title,descr,'.daytime-items').renderPhoto()
+	fetch('http://localhost:3000/dayTimes', {
+		method: "GET",
+		headers: {"Content-Type" : "application/json"}
+	}).then(response => response.json()).then(data => {
+		data.forEach(dayTime =>{
+			const {src, alt,title, descr} = dayTime
+			new DayTime(src,alt,title,descr,'.daytime-items').renderPhoto()
+		})
 	})
 
 	//FORMS
@@ -365,4 +347,116 @@ offers.forEach(offer => {
 			closeModal()
 		}, 3000)
 	}
+
+	//Slider
+	const slides = document.querySelectorAll('.offer__slide'),
+		prev = document.querySelector('.offer__slider-prev'),
+		next = document.querySelector('.offer__slider-next'),
+		total = document.querySelector('#total'),
+		current = document.querySelector('#current'),
+		slidesWrapper = document.querySelector('.offer__slider-wrapper'),
+		slidesInner = document.querySelector('.offer__slide-inner'),
+		width = window.getComputedStyle(slidesWrapper).width
+
+	let slideIndex = 1,
+		offset = 0
+
+	if (slides.length < 10){
+		total.textContent = `0${slides.length}`
+		current.textContent = `0${slideIndex}`
+	}else {
+		total.textContent = slides.length
+		current.textContent = slideIndex
+	}
+
+	slidesInner.style.width = 100 * slides.length + '%'
+	slidesInner.style.display = 'flex'
+	slidesInner.style.transition = 'all .5s ease'
+	slidesWrapper.style.overflow = 'hidden'
+
+	slides.forEach(slide => {
+		slide.style.width = width
+	})
+
+	next.addEventListener('click', () => {
+		if (offset === +width.slice(0, width.length - 2)* (slides.length - 1)){
+			offset = 0
+		}else {
+			offset += +width.slice(0, width.length - 2)
+		}
+
+		slidesInner.style.transform = `translateX(-${offset}px)`
+
+		if (slideIndex === slides.length) {
+			slideIndex = 1
+		}else {
+			slideIndex ++
+		}
+
+		if (slides.length < 10) {
+			current.textContent = `0${slideIndex}`
+		}else {
+			current.textContent = slideIndex
+		}
+	})
+
+	prev.addEventListener('click', () => {
+		if (offset === 0){
+			offset = +width.slice(0, width.length - 2)* (slides.length - 1)
+		}else {
+			offset -= +width.slice(0, width.length - 2)
+		}
+
+		slidesInner.style.transform = `translateX(-${offset}px)`
+
+		if (slideIndex === 1) {
+			slideIndex = slides.length
+		}else {
+			slideIndex --
+		}
+
+		if (slides.length < 10) {
+			current.textContent = `0${slideIndex}`
+		}else {
+			current.textContent = slideIndex
+		}
+	})
+
+	// showSlides(slideIndex)
+
+	// if (slides.length < 10){
+	// 	total.textContent = `0${slides.length}`
+	// }else {
+	// 	total.textContent = slides.length
+	// }
+
+	// function showSlides(index){
+	// 	if(index > slides.length) {
+	// 		slideIndex = 1
+	// 	}
+	// 	if (index < 1){
+	// 		slideIndex = slides.length
+	// 	}
+
+	// 	slides.forEach(slide => slide.style.display = 'none')
+
+	// 	slides[slideIndex - 1].style.display = 'block'
+	
+	// 	if (slides.length < 10) {
+	// 		current.textContent = `0${slideIndex}`
+	// 	}else {
+	// 		current.textContent = slideIndex
+	// 	}
+	// }
+
+	// function moveSlides(index){
+	// 	showSlides(slideIndex += index)
+	// }
+
+	// prev.addEventListener('click', ()=> {
+	// 	moveSlides(-1)
+	// })
+	// next.addEventListener('click', ()=> {
+	// 	moveSlides(1)
+	// })
 })
