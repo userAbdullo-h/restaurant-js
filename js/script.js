@@ -316,10 +316,8 @@ offers.forEach(offer => {
 		loader.style.width = '20px'
 		loader.style.height = '20px'
 		loader.style.marginTop = '20px'
-		// loader.class
 		form.append(loader)
 
-		// form.append(statusMessage)
 		const formData = new FormData(form)
 
 		const object = {}
@@ -363,7 +361,6 @@ offers.forEach(offer => {
 
 		setTimeout(() => {
 			statusModal.remove()
-			// modalDialog.classList.add('show')
 			modalDialog.classList.remove('hide')
 			closeModal()
 		}, 3000)
