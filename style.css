@@ -166,7 +166,7 @@ header * {
 #about .tab_content p {
 	margin-right: 7rem;
 	line-height: 1.6;
-	color: #1b1919;
+	color: #9a9a9a;
 	font-weight: 500;
 }
 
@@ -565,11 +565,6 @@ form button {
 	margin: 0 auto;
 }
 
-.offer {
-	display: grid;
-	grid-template-columns: 50% 50%;
-}
-
 .offer__slider-counter {
 	display: flex;
 	width: 180px;
@@ -594,6 +589,10 @@ form button {
 	width: 100%;
 	height: 500px;
 	object-fit: cover;
+}
+.offer{
+	display: grid;
+	grid-template-columns: 50% 50%;
 }
 .offer__slider-wrapper {
 	width: 100%;
@@ -886,19 +885,11 @@ form button {
 
 @keyframes modalFade {
 	from {
-		transform: translateY(-100px)	;
-		-webkit-transform: translateY(-100px)	;
-		-moz-transform: translateY(-100px)	;
-		-ms-transform: translateY(-100px)	;
-		-o-transform: translateY(-100px)	;
-}
+		transform: translateY(-100px);
+	}
 	to {
-		transform: translateY(0px)		;
-		-webkit-transform: translateY(0px)		;
-		-moz-transform: translateY(0px)		;
-		-ms-transform: translateY(0px)		;
-		-o-transform: translateY(0px)		;
-}
+		transform: translateY(0);
+	}
 }
 
 .loader-wrapper {
@@ -912,48 +903,28 @@ form button {
 	right: 0;
 	bottom: 0;
 	top: 0;
-	z-index: 99;
-	background: #000;
+	z-index: 50;
+	background-color: #000;
 }
 
 .loader {
 	width: 48px;
 	height: 48px;
+	border: 5px solid #fff;
+	border-bottom-color: #ff3d00;
 	border-radius: 50%;
-	position: relative;
-	animation: rotate 1s linear infinite;
-	-webkit-animation: rotate 1s linear infinite;
+	display: inline-block;
+	box-sizing: border-box;
+	animation: rotation 1s linear infinite;
 	display: block;
 	margin: 0 auto;
-
-}
-.loader::before , .loader::after {
-	content: "";
-	box-sizing: border-box;
-	position: absolute;
-	inset: 0px;
-	border-radius: 50%;
-	border: 5px solid #FFF;
-	animation: prixClipFix 2s linear infinite ;
-}
-.loader::after{
-	transform: rotate3d(90, 90, 0, 180deg );
-	border-color: #FF3D00;
 }
 
-@keyframes rotate {
-	0%   {transform: rotate(0deg)}
-	100%   {transform: rotate(360deg)}
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
-
-@keyframes prixClipFix {
-		0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
-		50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
-		75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-}
-
-@keyframes round {
-  0% { transform: rotate(0deg) }
-  100% { transform: rotate(360deg) }
-}
- 
