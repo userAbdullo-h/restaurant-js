@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	tabs('.tabheader__item', '.tab_content', '.tabheader__items')
 	loader('.loader-wrapper')
-	timer('2025-03-17', '.timer')
+	timer('2026-03-17', '.timer')
 	modal('[data-modal]', '.modal', '.modal__content', modalTimerId)
 	classCard('.offers-items')
 	forms('form', modalTimerId)
